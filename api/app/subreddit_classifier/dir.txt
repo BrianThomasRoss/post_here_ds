@@ -1,0 +1,32 @@
+Folder PATH listing
+Volume serial number is B15F-2350
+C:.
+³   dir.txt
+³   subreddit_predictor.py
+³   util.py
+³   __init__.py
+³   
+ÃÄÄÄdatasets
+³       dataset.csv
+³       __init__.py
+³       
+ÃÄÄÄmodels
+³   ³   pre_trained.py
+³   ³   __init__.py
+³   ³   
+³   ÀÄÄÄmodel_assets
+³       ³   __init__.py
+³       ³   
+³       ÃÄÄÄpre_trained
+³       ³       multinomialNB.pkl.xz
+³       ³       nearestneighbors.pkl.xz
+³       ³       TfidfVectorizer.pkl
+³       ³       vocab.pkl
+³       ³       __init__.py
+³       ³       
+³       ÀÄÄÄservices
+³               __init__.py
+³               
+ÀÄÄÄtests
+        experiment.py
+        

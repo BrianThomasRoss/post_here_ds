@@ -17,6 +17,10 @@ gunicorn = "*"
 flask-cors = "*"
 python-dotenv = "*"
 python-decouple = "*"
+<<<<<<< Updated upstream
+=======
+spacy = "*"
+>>>>>>> Stashed changes
 
 [requires]
 python_version = "3.7"

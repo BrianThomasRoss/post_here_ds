@@ -17,6 +17,7 @@ class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'api.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    ML_DATA_TESTING_CONFIG = True
 
 
 class TestingConfig(Config):
@@ -25,6 +26,7 @@ class TestingConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'api.db')
     PRESERVE_CONTEXT_ON_EXCEPTION = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    ML_DATA_TESTING_CONFIG = True
 
 
 class ProductionConfig(Config):
