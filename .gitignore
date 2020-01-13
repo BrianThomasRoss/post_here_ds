@@ -210,3 +210,4 @@ dmypy.json
 # End of https://www.gitignore.io/api/osx,python,visualstudiocode
 .vscode/settings.json
 api/app/ingestion/praw.ini
+*.json
