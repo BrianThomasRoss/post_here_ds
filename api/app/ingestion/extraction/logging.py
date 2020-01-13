@@ -7,11 +7,11 @@ class ExtractionMonitor:
     Monitors and logs information concerning the Data Acquisition process.
     """
 
-    date = dt.datetime.now().strftime("%m-%d-%Y")
+    date = dt.now().strftime("%m-%d-%Y")
     report = {f'ExtractionLog : {date}':{'errors':[], 'count': [],
             'duration':[]}}
     errors = {'error':[], 'occured_in':[]}
-    date = dt.datetime.now().strftime("%m-%d-%Y")
+    date = dt.now().strftime("%m-%d-%Y")
 
     def __init__(self):
         pass

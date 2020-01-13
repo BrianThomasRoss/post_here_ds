@@ -3,7 +3,13 @@ from time import sleep
 from typing import Union
 from .utils import apply_settings, verify_type
 from datetime import datetime as dt
-from ...processing.services import process_text, convert_time
+from ..processing.services import process_text, convert_time
+from ..storage.delivery import ProcessedPosts
+from dotenv import load_dotenv
+import os
+
+
+# TODO: Fix text processing and convert_time functions
 
 class Transcribe:
     """
@@ -45,8 +51,15 @@ class Retrieval:
     collection: dictionary of data
     """
 
-    reddit = praw.Reddit() # TODO: configure env vars for praw
+    # praw object that interfaces with Reddit
+    reddit = praw.Reddit(
+                    client_id=os.getenv('client_id'),
+                    client_secret=os.getenv('client_secret'),
+                    user_agent=os.getenv('user_agent'))
 
+    reddit.readonly = True
+
+    # key-value pair of the DB model and attribute from where it is declared
     features = {'post_id':'id', 'subreddit':'subreddit_name_prefix',
     'post_title':'title', 'post_flair':'link_flair_text', 
     'submission_epoch_utc':'created_utc', 'submission_epoch_local':'created',
@@ -56,6 +69,7 @@ class Retrieval:
     'comments_received':'num_comments', 'post_text':'selftext',
     'image_url':'url'}
 
+    # instantiate a dict to store the data collected from this batch
     subreddit_data = dict((key, []) for key in features.keys())
 
     def __init__(self, subreddit: str, limit: int = 10, sort_by: str = 'new'):
@@ -64,15 +78,15 @@ class Retrieval:
         self.limit = limit
         self.sort_by = sort_by
 
-    def connect(self):
+    def connect(self) -> object:
+        """Returns praw object initialized with the class params"""
         return apply_settings(self.reddit, self.sub, self.sort_by, self.limit)
 
     def collect_batch(self):
-        
+        """Retreives the batch of posts determined by the 
+        class params"""
         posts = self.connect()
-        collection = dict((key, []) for key in self.features.keys())
 
         for post in posts:
             Transcribe(post).absorb(self.features, collection)
-        return collection
-
+            ProcessedPosts.execute(transfer(post))

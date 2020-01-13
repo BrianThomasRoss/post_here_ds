@@ -18,7 +18,7 @@ flask-cors = "*"
 python-dotenv = "*"
 python-decouple = "*"
 sklearn = "*"
-
+praw = "*"
 
 [requires]
 python_version = "3.7"
